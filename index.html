@@ -119,6 +119,19 @@
             animation: glow-pulse 2s infinite alternate;
             margin-bottom: 20px;
         }
+        .cake {
+            width: 200px;
+            height: 150px;
+            background: linear-gradient(to top, #8b4513, #daa520);
+            border-radius: 50% 50% 0 0;
+            position: relative;
+            box-shadow: 0 0 20px rgba(218, 165, 32, 0.5);
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
         .cake::before, .cake::after {
             content: '';
             position: absolute;
@@ -129,8 +142,8 @@
             border-radius: 50%;
             animation: flicker 1s infinite alternate;
         }
-        .cake::before { left: 45%; animation-delay: 0s; }
-        .cake::after { left: 55%; animation-delay: 0.5s; }
+        .cake::before { left: 40%; animation-delay: 0s; }
+        .cake::after { left: 60%; animation-delay: 0.5s; }
         @keyframes flicker {
             0% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.5; transform: scale(0.9); }
@@ -368,6 +381,7 @@
     </script>
 </body>
 </html>
+
 
 
 
