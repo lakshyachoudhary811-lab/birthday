@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><b>Happy Birthday Divya!</b></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0f0f23, #1a1a2e, #16213e);
+            color: white;
+            height: 100vh;
+            background-color: red;
+        }
+        .container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
+        }
+        .fade-out {
+            opacity: 0;
+            transform: scale(1.1);
+            filter: blur(10px);
+        }
+        .glow-text {
+            font-size: 3em;
+            color: #ff6b6b;
+            text-shadow: 0 0 20px #ff6b6b, 0 0 40px #ff6b6b, 0 0 60px #ff6b6b;
+            animation: glow-pulse 2s infinite alternate;
+            margin-bottom: 20px;
+        }
+        @keyframes glow-pulse {
+            from { text-shadow: 0 0 20px #ff6b6b, 0 0 40px #ff6b6b; }
+            to { text-shadow: 0 0 30px #ff6b6b, 0 0 60px #ff6b6b, 0 0 80px #ff6b6b; }
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #ff6b6b; }
+        }
+        button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: red;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .gift-box {
+            width: 150px;
+            height: 150px;
+            background: (45deg, #ff6b6b, #ffa500);
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+            animation: bounce-shake 1s infinite alternate;
+        }
+        @keyframes bounce-shake {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+            100% { transform: translateY(0) rotate(-1deg); }
+        }
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 6s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        .final-scene {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef, #fecfef, #ffecd2);
+            animation: gradient-shift 5s ease-in-out infinite alternate;
+        }
+        @keyframes gradient-shift {
+            0% { background: linear-gradient(135deg, #ff9a9e, #fecfef); }
+            100% { background: linear-gradient(135deg, #fecfef, #ffecd2); }
+        }
+        .final-text {
+            font-size: 4em;
+            color: #ff6b6b;
+            text-shadow: 0 0 20px #ff6b6b, 0 0 40px #ff6b6b;
+            animation: glow-pulse 2s infinite alternate;
+            margin-bottom: 20px;
+        }
+        .cake {
+            width: 200px;
+            height: 150px;
+            background: linear-gradient(to top, #8b4513, #daa520);
+            border-radius: 50% 50% 0 0;
+            position: relative;
+            box-shadow: 0 0 20px rgba(218, 165, 32, 0.5);
+        }
+        .cake::before, .cake::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            width: 10px;
+            height: 20px;
+            background: #ff4500;
+            border-radius: 50%;
+            animation: flicker 1s infinite alternate;
+        }
+        .cake::before { left: 45%; animation-delay: 0s; }
+        .cake::after { left: 55%; animation-delay: 0.5s; }
+        @keyframes flicker {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: hsl(var(--hue), 100%, 50%);
+            animation: fall 3s linear infinite;
+            --hue: 0;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            transform: rotate(45deg);
+            animation: float-up 4s linear infinite;
+        }
+        .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            border-radius: 50%;
+        }
+        .heart::before { top: -10px; left: 0; }
+        .heart::after { top: 0; left: -10px; }
+        @keyframes float-up {
+            0% { transform: translateY(100vh) rotate(45deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(45deg); opacity: 0; }
+        }
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: black;
+            border-radius: 50%;
+            animation: sparkle 2s infinite;
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        .flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            opacity: 0;
+            z-index: 100;
+            animation: flash 0.5s ease-out;
+        }
+        @keyframes flash {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        @media (max-width: 600px) {
+            .glow-text, .final-text { font-size: 2.5em; }
+            button { padding: 12px 25px; font-size: 1em; }
+            .cake { width: 150px; height: 120px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="main-container">
+        <!-- Scene 1: Intro -->
+        <div class="glow-text">Today is special ✨</div>
+        <button id="blow-candles">Blow the candles 🎂</button>
+        <!-- Floating particles -->
+        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 40%; animation-delay: 3s;"></div>
+        <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+        <div class="particle" style="left: 70%; animation-delay: 6s;"></div>
+        <div class="particle" style="left: 80%; animation-delay: 7s;"></div>
+        <div class="particle" style="left: 90%; animation-delay: 8s;"></div>
+    </div>
+
+    <script>
+        let teaseClickCount = 0;
+        const container = document.getElementById('main-container');
+
+        // Scene 1 to Scene 2
+        document.getElementById('blow-candles').addEventListener('click', () => {
+            container.classList.add('fade-out');
+            setTimeout(() => {
+                // Remove all children
+                while (container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
+                // Add Scene 2
+                const text = document.createElement('div');
+                text.className = 'typewriter';
+                text.textContent = 'I have something for you 💝';
+                container.appendChild(text);
+
+                const gift = document.createElement('div');
+                gift.className = 'gift-box';
+                container.appendChild(gift);
+
+                const button = document.createElement('button');
+                button.id = 'open-it';
+                button.textContent = 'Open it 🎁';
+                container.appendChild(button);
+
+                container.classList.remove('fade-out');
+
+                // Add event listener for Scene 2
+                button.addEventListener('click', () => {
+                    container.classList.add('fade-out');
+                    setTimeout(() => {
+                        // Remove all children
+                        while (container.firstChild) {
+                            container.removeChild(container.firstChild);
+                        }
+                        // Add Scene 3
+                        const text = document.createElement('div');
+                        text.className = 'typewriter';
+                        text.id = 'tease-text';
+                        text.textContent = 'Itni bhi kya jaldi hai? 😏';
+                        container.appendChild(text);
+
+                        const button = document.createElement('button');
+                        button.id = 'tease-button';
+                        button.textContent = 'Open it 🎁';
+                        container.appendChild(button);
+
+                        container.classList.remove('fade-out');
+                        teaseClickCount = 1;
+
+                        // Add event listener for Scene 3
+                        button.addEventListener('click', () => {
+                            teaseClickCount++;
+                            const textEl = document.getElementById('tease-text');
+                            textEl.classList.remove('typewriter');
+                            setTimeout(() => {
+                                if (teaseClickCount === 2) {
+                                    textEl.textContent = 'Thoda sabr karo.... surprise bhaag nahi raha 😭';
+                                } else if (teaseClickCount === 3) {
+                                    textEl.textContent = 'Areyyy wahh!!! itna excited? 😂';
+                                } else if (teaseClickCount === 4) {
+                                    textEl.textContent = 'Thik hai enjoyyy 🎉';
+                                } else if (teaseClickCount === 5) {
+                                    // Final reveal
+                                    container.classList.add('fade-out');
+                                    setTimeout(() => {
+                                        // Flash
+                                        const flash = document.createElement('div');
+                                        flash.className = 'flash';
+                                        document.body.appendChild(flash);
+                                        setTimeout(() => {
+                                            document.body.removeChild(flash);
+                                        }, 500);
+
+                                        // Remove all children
+                                        while (container.firstChild) {
+                                            container.removeChild(container.firstChild);
+                                        }
+                                        container.classList.add('final-scene');
+
+                                        const finalText = document.createElement('div');
+                                        finalText.className = 'final-text';
+                                        finalText.textContent = 'HAPPIEST BIRTHDAY DIVYA 💖🎂';
+                                        container.appendChild(finalText);
+
+                                        const cake = document.createElement('div');
+                                        cake.className = 'cake';
+                                        container.appendChild(cake);
+
+                                        container.classList.remove('fade-out');
+
+                                        // Add confetti, hearts, sparkles continuously
+                                        setInterval(() => {
+                                            const confetti = document.createElement('div');
+                                            confetti.className = 'confetti';
+                                            confetti.style.left = Math.random() * 100 + '%';
+                                            confetti.style.setProperty('--hue', Math.random() * 360);
+                                            container.appendChild(confetti);
+                                            setTimeout(() => {
+                                                if (container.contains(confetti)) container.removeChild(confetti);
+                                            }, 3000);
+                                        }, 200);
+
+                                        setInterval(() => {
+                                            const heart = document.createElement('div');
+                                            heart.className = 'heart';
+                                            heart.style.left = Math.random() * 100 + '%';
+                                            container.appendChild(heart);
+                                            setTimeout(() => {
+                                                if (container.contains(heart)) container.removeChild(heart);
+                                            }, 4000);
+                                        }, 500);
+
+                                        setInterval(() => {
+                                            const sparkle = document.createElement('div');
+                                            sparkle.className = 'sparkle';
+                                            sparkle.style.left = Math.random() * 100 + '%';
+                                            sparkle.style.top = Math.random() * 100 + '%';
+                                            container.appendChild(sparkle);
+                                            setTimeout(() => {
+                                                if (container.contains(sparkle)) container.removeChild(sparkle);
+                                            }, 2000);
+                                        }, 300);
+                                    }, 500);
+                                }
+                                textEl.classList.add('typewriter');
+                                if (teaseClickCount < 5) moveButtonRandomly(button);
+                            }, 100);
+                        });
+                    }, 500);
+                });
+            }, 500);
+        });
+
+        function moveButtonRandomly(button) {
+            button.style.transition = 'all 0.5s ease';
+            button.style.left = Math.random() * (window.innerWidth - 200) + 'px';
+            button.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+            button.style.position = 'absolute';
+        }
+    </script>
+</body>
+</html>
